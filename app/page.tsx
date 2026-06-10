@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { GitHubCalendar } from "react-github-calendar";
+import SpotifyWidget from "./components/SpotifyWidget";
 
 const buildItems = [
   "AI tools.",
@@ -243,6 +245,49 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
+
+        {/* ACTIVITY SECTION (GITHUB + SPOTIFY) */}
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-24 pt-12 border-t border-border-dark/20"
+        >
+          <div className="font-mono text-sm uppercase tracking-widest text-text-secondary mb-8">
+            Activity Feed
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* GITHUB */}
+            <div className="lg:col-span-2 border border-border-dark bg-card p-6 md:p-8 hover:border-text-secondary transition-colors interactive overflow-x-auto hide-scrollbar">
+               <div className="flex justify-between items-center mb-6">
+                 <span className="font-mono text-xs text-text-secondary">Code</span>
+                 <a href="https://github.com/sup-Udh" target="_blank" rel="noreferrer" className="font-mono text-xs text-text-secondary hover:text-white transition-colors interactive">@sup-Udh</a>
+               </div>
+               <div className="min-w-[750px]">
+                 <GitHubCalendar 
+                    username="sup-Udh" 
+                    year={2026}
+                    colorScheme="dark"
+                    theme={{
+                      light: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
+                      dark: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
+                    }}
+                    hideColorLegend={true}
+                    labels={{
+                      totalCount: '{{count}} contributions in 2026',
+                    }}
+                    blockSize={12}
+                    blockMargin={4}
+                    fontSize={12}
+                  />
+               </div>
+            </div>
+
+            {/* LIVE SPOTIFY WIDGET */}
+            <SpotifyWidget />
+          </div>
+        </motion.div>
       </section>
 
       {/* BLOG SECTION */}
