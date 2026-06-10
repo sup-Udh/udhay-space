@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import SpotifyWidget from "./components/SpotifyWidget";
+import { useTheme } from "./components/ThemeProvider";
 
 const buildItems = [
   "AI tools.",
@@ -22,8 +23,11 @@ const buildItems = [
 
 export default function Home() {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const interval = setInterval(() => {
       setCurrentItemIndex((prevIndex) => (prevIndex + 1) % buildItems.length);
     }, 2500);
@@ -265,22 +269,24 @@ export default function Home() {
                  <a href="https://github.com/sup-Udh" target="_blank" rel="noreferrer" className="font-mono text-xs text-text-secondary hover:text-white transition-colors interactive">@sup-Udh</a>
                </div>
                <div className="min-w-[750px]">
-                 <GitHubCalendar 
-                    username="sup-Udh" 
-                    year={2026}
-                    colorScheme="dark"
-                    theme={{
-                      light: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
-                      dark: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
-                    }}
-                    hideColorLegend={true}
-                    labels={{
-                      totalCount: '{{count}} contributions in 2026',
-                    }}
-                    blockSize={12}
-                    blockMargin={4}
-                    fontSize={12}
-                  />
+                 {mounted && (
+                   <GitHubCalendar 
+                      username="sup-Udh" 
+                      year={2026}
+                      colorScheme={theme === "colorful" ? "light" : "dark"}
+                      theme={theme === "colorful" ? undefined : {
+                        light: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
+                        dark: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
+                      }}
+                      hideColorLegend={true}
+                      labels={{
+                        totalCount: '{{count}} contributions in 2026',
+                      }}
+                      blockSize={12}
+                      blockMargin={4}
+                      fontSize={12}
+                    />
+                 )}
                </div>
             </div>
 

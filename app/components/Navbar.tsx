@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -16,6 +18,12 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [activeHash, setActiveHash] = useState("");
+  const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     // Only run scroll spy on the home page
@@ -100,6 +108,16 @@ export default function Navbar() {
               </div>
             );
           })}
+
+          {mounted && (
+            <button 
+              onClick={toggleTheme}
+              className="ml-4 text-text-secondary hover:text-text-primary transition-colors interactive flex items-center justify-center"
+              aria-label="Toggle colorful mode"
+            >
+              {theme === "colorful" ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+          )}
         </nav>
 
           {/* Mobile menu could be added here later */}

@@ -15,10 +15,11 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+import { ThemeProvider } from "./components/ThemeProvider";
+
 export const metadata: Metadata = {
-  title: "Udhay | Developer",
-  description: "A highly technical developer who loves building products, AI systems, experiments, and tools.",
-  keywords: ["portfolio", "developer", "AI", "Udhay"],
+  title: "Udhay | Developer & Designer",
+  description: "Personal portfolio of Udhay. Builder of products, AI systems, and developer tools.",
 };
 
 export default function RootLayout({
@@ -28,10 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${ibmPlexMono.variable} ${jetbrainsMono.variable}`}>
-      <body className="antialiased bg-primary text-primary min-h-screen selection:bg-white selection:text-black">
-        <Navbar />
-        <CustomCursor />
-        {children}
+      <body className="antialiased bg-background-primary text-text-primary custom-scrollbar font-code">
+        <ThemeProvider>
+          <CustomCursor />
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

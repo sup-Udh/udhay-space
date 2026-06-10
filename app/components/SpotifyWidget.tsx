@@ -44,9 +44,9 @@ export default function SpotifyWidget() {
         <span className="flex items-center gap-1 h-4">
           {isPlaying ? (
             <>
-              <motion.span animate={{ height: [8, 16, 8] }} transition={{ repeat: Infinity, duration: 1.2 }} className="w-[3px] bg-text-secondary block" />
-              <motion.span animate={{ height: [12, 6, 12] }} transition={{ repeat: Infinity, duration: 1 }} className="w-[3px] bg-text-secondary block" />
-              <motion.span animate={{ height: [6, 14, 6] }} transition={{ repeat: Infinity, duration: 0.8 }} className="w-[3px] bg-text-secondary block" />
+              <motion.span animate={{ height: [8, 16, 8] }} transition={{ repeat: Infinity, duration: 1.2 }} className="w-[3px] bg-accent-primary block" />
+              <motion.span animate={{ height: [12, 6, 12] }} transition={{ repeat: Infinity, duration: 1 }} className="w-[3px] bg-accent-primary block" />
+              <motion.span animate={{ height: [6, 14, 6] }} transition={{ repeat: Infinity, duration: 0.8 }} className="w-[3px] bg-accent-primary block" />
             </>
           ) : (
             <>

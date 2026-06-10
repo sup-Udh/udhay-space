@@ -15,6 +15,17 @@
 }
 
 @layer base {
+  .theme-colorful {
+    --color-background-primary: #FAFAFA;
+    --color-background-secondary: #F3F4F6;
+    --color-card: #FFFFFF;
+    --color-text-primary: #0F172A;
+    --color-text-secondary: #64748B;
+    --color-border-dark: #CBD5E1;
+    --color-accent-primary: #FF2D75; /* vibrant pink */
+    --color-accent-subtle: #F472B6;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
