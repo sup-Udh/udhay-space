@@ -1,10 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+
+const buildItems = [
+  "AI tools.",
+  "web extensions.",
+  "modern websites.",
+  "SaaS products.",
+  "scalable MVPs.",
+  "automation systems.",
+  "developer tools.",
+  "CLI applications.",
+  "beautiful UI's.",
+  "open-source tech."
+];
 
 export default function Home() {
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentItemIndex((prevIndex) => (prevIndex + 1) % buildItems.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative min-h-screen">
       {/* Background Noise Texture */}
@@ -39,9 +62,22 @@ export default function Home() {
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight leading-tight mb-6">
               Hi, I'm Udhay. <br />
-              <span className="text-text-secondary text-3xl md:text-4xl lg:text-5xl block mt-2">
-                I build products, <br /> AI systems, <br />
-                and developer tools.
+              <span className="text-text-secondary text-3xl md:text-4xl lg:text-5xl block mt-4 leading-relaxed">
+                I build <br />
+                <span className="text-text-primary inline-flex h-[1.2em] overflow-hidden align-bottom min-w-[200px] md:min-w-[300px]">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={currentItemIndex}
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -40 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="block whitespace-nowrap"
+                    >
+                      {buildItems[currentItemIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
               </span>
             </h1>
             <p className="text-sm md:text-base text-text-secondary font-mono max-w-md mb-10 leading-relaxed">

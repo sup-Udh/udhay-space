@@ -2,18 +2,59 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Projects", path: "#projects" },
+  { name: "Projects", path: "/#projects" },
   { name: "Blog", path: "/blog" },
-  { name: "About", path: "#about" },
-  { name: "Contact", path: "#contact" },
+  { name: "About", path: "/#about" },
+  { name: "Contact", path: "/#contact" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [activeHash, setActiveHash] = useState("");
+
+  useEffect(() => {
+    // Only run scroll spy on the home page
+    if (pathname !== "/") return;
+
+    const handleScroll = () => {
+      const sections = navLinks
+        .filter((link) => link.path.startsWith("/#"))
+        .map((link) => link.path.replace("/#", ""));
+
+      let currentActive = "";
+      
+      // If we're at the very top, active is "Home" (empty hash)
+      if (window.scrollY < 100) {
+        setActiveHash("");
+        return;
+      }
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // If the top of the section is within the top half of the screen
+          // and the bottom of the section is below the top of the screen
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
+            currentActive = section;
+          }
+        }
+      }
+
+      setActiveHash(currentActive);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-[#2A2A2A]">
@@ -26,16 +67,32 @@ export default function Navbar() {
         
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link, index) => {
-            const isActive = pathname === link.path || (pathname === '/' && link.path.startsWith('#'));
-            // Note: In a real app, hash links need scroll spying for true active state on single page.
+            let isActive = false;
+            
+            if (pathname === "/blog" && link.path === "/blog") {
+              isActive = true;
+            } else if (pathname === "/") {
+              if (link.path === "/") {
+                isActive = activeHash === "";
+              } else if (link.path === `/#${activeHash}` && activeHash !== "") {
+                isActive = true;
+              }
+            }
+
             return (
               <div key={link.name} className="flex items-center gap-6">
                 <Link
                   href={link.path}
-                  className="group relative font-mono text-xs uppercase tracking-widest text-text-secondary hover:text-text-primary transition-colors interactive"
+                  className={`group relative font-mono text-xs uppercase tracking-widest transition-colors interactive ${
+                    isActive ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
+                  }`}
                 >
                   {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                  <span 
+                    className={`absolute -bottom-1 left-0 h-[1px] bg-white transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  ></span>
                 </Link>
                 {index < navLinks.length - 1 && (
                   <span className="text-[#2A2A2A] text-xs">/</span>
@@ -45,11 +102,53 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Mobile menu could be added here later */}
+          {/* Mobile menu could be added here later */}
         <div className="md:hidden font-mono text-xs">
           Menu
         </div>
       </div>
+
+      {/* Walking Pixel Cat */}
+      <motion.div
+        className="absolute bottom-0 left-0 pointer-events-none"
+        animate={{
+          x: ["0vw", "calc(100vw - 40px)", "calc(100vw - 40px)", "0vw"],
+          scaleX: [1, 1, -1, -1],
+        }}
+        transition={{
+          duration: 40,
+          repeat: Infinity,
+          ease: "linear",
+          times: [0, 0.49, 0.51, 1], // Wait 2% of the time at the edges to "turn around"
+        }}
+      >
+        <motion.div
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 0.25, repeat: Infinity, ease: "linear" }}
+        >
+          {/* Pixelated Cat SVG */}
+          <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges">
+            {/* Tail */}
+            <rect x="2" y="4" width="2" height="8" fill="#F5F5F5" />
+            <rect x="0" y="2" width="2" height="4" fill="#F5F5F5" />
+            {/* Body */}
+            <rect x="4" y="8" width="10" height="6" fill="#F5F5F5" />
+            {/* Head */}
+            <rect x="14" y="4" width="8" height="8" fill="#F5F5F5" />
+            {/* Ears */}
+            <rect x="14" y="2" width="2" height="2" fill="#F5F5F5" />
+            <rect x="20" y="2" width="2" height="2" fill="#F5F5F5" />
+            {/* Eyes */}
+            <rect x="16" y="6" width="2" height="2" fill="#0A0A0A" />
+            <rect x="20" y="6" width="2" height="2" fill="#0A0A0A" />
+            {/* Nose */}
+            <rect x="18" y="8" width="2" height="2" fill="#A1A1AA" />
+            {/* Legs */}
+            <rect x="4" y="14" width="2" height="2" fill="#F5F5F5" />
+            <rect x="12" y="14" width="2" height="2" fill="#F5F5F5" />
+          </svg>
+        </motion.div>
+      </motion.div>
     </header>
   );
 }
