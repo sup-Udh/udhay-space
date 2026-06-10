@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
+/* ============================================
+   EDITORIAL DESIGN SYSTEM
+   Japanese Magazine Inspired Portfolio
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core Colors */
+  --bg-page: #EADACE;
+  --text-primary: #111111;
+  --text-secondary: #444444;
+  --accent: #000000;
+
+  /* Fonts */
+  --font-display: var(--font-shippori), "Noto Serif JP", serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
+
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--text-primary);
+  color: var(--bg-page);
+}
+
+/* Base Utility for the Musashi Image Blend */
+.mix-blend-multiply {
+  mix-blend-mode: multiply;
 }
