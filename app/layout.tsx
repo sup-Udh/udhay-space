@@ -1,30 +1,24 @@
 import type { Metadata } from "next";
-import { Shippori_Mincho_B1, Inter } from "next/font/google";
+import { IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
+import Navbar from "./components/Navbar";
+import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
 
-const shipporiMincho = Shippori_Mincho_B1({
-  variable: "--font-shippori",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-  display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Udhay — Portfolio | 武蔵の道",
-  description:
-    "Personal portfolio of Udhay — inspired by the legendary samurai Miyamoto Musashi. A cinematic journey through code, craft, and the way of the warrior.",
-  keywords: ["portfolio", "developer", "Udhay", "Miyamoto Musashi", "samurai"],
-  openGraph: {
-    title: "Udhay — Portfolio",
-    description: "The Way of the Warrior — A cinematic developer portfolio",
-    type: "website",
-  },
+  title: "Udhay | Developer",
+  description: "A highly technical developer who loves building products, AI systems, experiments, and tools.",
+  keywords: ["portfolio", "developer", "AI", "Udhay"],
 };
 
 export default function RootLayout({
@@ -33,11 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${shipporiMincho.variable} ${inter.variable}`}
-    >
-      <body>{children}</body>
+    <html lang="en" className={`${ibmPlexMono.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased bg-primary text-primary min-h-screen selection:bg-white selection:text-black">
+        <Navbar />
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

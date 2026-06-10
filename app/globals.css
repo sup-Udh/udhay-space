@@ -1,58 +1,100 @@
 @import "tailwindcss";
 
-/* ============================================
-   EDITORIAL DESIGN SYSTEM
-   Japanese Magazine Inspired Portfolio
-   ============================================ */
+@theme {
+  --color-background-primary: #0A0A0A;
+  --color-background-secondary: #111111;
+  --color-card: #161616;
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #A1A1AA;
+  --color-border-dark: #2A2A2A;
+  --color-accent-primary: #FFFFFF;
+  --color-accent-subtle: #D4D4D8;
 
-:root {
-  /* Core Colors */
-  --bg-page: #EADACE;
-  --text-primary: #111111;
-  --text-secondary: #444444;
-  --accent: #000000;
-
-  /* Fonts */
-  --font-display: var(--font-shippori), "Noto Serif JP", serif;
-  --font-body: var(--font-inter), "Inter", sans-serif;
-
-  --background: var(--bg-page);
-  --foreground: var(--text-primary);
+  --font-mono: var(--font-ibm-plex), monospace;
+  --font-code: var(--font-jetbrains), monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-body);
-  --font-serif: var(--font-display);
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent-primary);
+    color: var(--color-background-primary);
+  }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer utilities {
+  .noise-bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.03"/%3E%3C/svg%3E');
+    pointer-events: none;
+    z-index: 9999;
+    animation: noise 2s steps(2) infinite;
+  }
+
+  .bento-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border-dark);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .bento-card:hover {
+    border-color: var(--color-text-secondary);
+    transform: translateY(-2px);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background-primary); 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-dark); 
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary); 
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+@keyframes noise {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
 }
 
-body {
-  background: var(--bg-page);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  min-height: 100vh;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-::selection {
-  background: var(--text-primary);
-  color: var(--bg-page);
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Base Utility for the Musashi Image Blend */
-.mix-blend-multiply {
-  mix-blend-mode: multiply;
-}
