@@ -65,11 +65,11 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-[#2A2A2A]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background-primary/80 backdrop-blur-md border-b border-border-dark transition-colors duration-300">
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <div className="font-mono text-sm font-bold tracking-wider">
           <Link href="/" className="hover:text-accent-primary transition-colors">
-            Udhay_
+            Udhay Rajeev_
           </Link>
         </div>
         
@@ -97,13 +97,13 @@ export default function Navbar() {
                 >
                   {link.name}
                   <span 
-                    className={`absolute -bottom-1 left-0 h-[1px] bg-white transition-all duration-300 ${
+                    className={`absolute -bottom-1 left-0 h-[1px] bg-accent-primary transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   ></span>
                 </Link>
                 {index < navLinks.length - 1 && (
-                  <span className="text-[#2A2A2A] text-xs">/</span>
+                  <span className="text-border-dark text-xs">/</span>
                 )}
               </div>
             );
@@ -147,23 +147,23 @@ export default function Navbar() {
           {/* Pixelated Cat SVG */}
           <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges">
             {/* Tail */}
-            <rect x="2" y="4" width="2" height="8" fill="#F5F5F5" />
-            <rect x="0" y="2" width="2" height="4" fill="#F5F5F5" />
+            <rect x="2" y="4" width="2" height="8" fill="var(--color-text-primary)" />
+            <rect x="0" y="2" width="2" height="4" fill="var(--color-text-primary)" />
             {/* Body */}
-            <rect x="4" y="8" width="10" height="6" fill="#F5F5F5" />
+            <rect x="4" y="8" width="10" height="6" fill="var(--color-text-primary)" />
             {/* Head */}
-            <rect x="14" y="4" width="8" height="8" fill="#F5F5F5" />
+            <rect x="14" y="4" width="8" height="8" fill="var(--color-text-primary)" />
             {/* Ears */}
-            <rect x="14" y="2" width="2" height="2" fill="#F5F5F5" />
-            <rect x="20" y="2" width="2" height="2" fill="#F5F5F5" />
+            <rect x="14" y="2" width="2" height="2" fill="var(--color-text-primary)" />
+            <rect x="20" y="2" width="2" height="2" fill="var(--color-text-primary)" />
             {/* Eyes */}
-            <rect x="16" y="6" width="2" height="2" fill="#0A0A0A" />
-            <rect x="20" y="6" width="2" height="2" fill="#0A0A0A" />
+            <rect x="16" y="6" width="2" height="2" fill="var(--color-background-primary)" />
+            <rect x="20" y="6" width="2" height="2" fill="var(--color-background-primary)" />
             {/* Nose */}
-            <rect x="18" y="8" width="2" height="2" fill="#A1A1AA" />
+            <rect x="18" y="8" width="2" height="2" fill="var(--color-text-secondary)" />
             {/* Legs */}
-            <rect x="4" y="14" width="2" height="2" fill="#F5F5F5" />
-            <rect x="12" y="14" width="2" height="2" fill="#F5F5F5" />
+            <rect x="4" y="14" width="2" height="2" fill="var(--color-text-primary)" />
+            <rect x="12" y="14" width="2" height="2" fill="var(--color-text-primary)" />
           </svg>
         </motion.div>
       </motion.div>

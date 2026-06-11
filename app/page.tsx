@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Baby, User, Terminal, Brain, GraduationCap, Rocket } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { GitHubCalendar } from "react-github-calendar";
 import SpotifyWidget from "./components/SpotifyWidget";
 import { useTheme } from "./components/ThemeProvider";
@@ -48,23 +49,25 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-1/2 flex justify-center lg:justify-start"
+            className="w-full lg:w-1/2 flex justify-center lg:justify-center lg:pl-10"
           >
-            <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] animate-float">
-              {/* Placeholder SVG since the user mentioned a cartoon-style profile image. */}
-              <div className="w-full h-full border border-border-dark bg-card flex flex-col items-center justify-center overflow-hidden grayscale">
-                <span className="text-text-secondary text-sm font-mono mb-2">[ Image Placeholder ]</span>
-                <span className="text-[#2A2A2A] text-xs font-code px-8 text-center">Replace this with cartoon profile image.</span>
-              </div>
+            <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] animate-float border border-border-dark bg-card overflow-hidden">
+              <Image 
+                src="/udhay.png" 
+                alt="Udhay Profile" 
+                fill 
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+                priority
+              />
             </div>
           </motion.div>
 
-          {/* Right Side: Typography */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+          {/* Main Hero Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full lg:w-1/2"
+            className="max-w-4xl"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight leading-tight mb-6">
               Hi, I'm Udhay. <br />
@@ -87,8 +90,14 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-sm md:text-base text-text-secondary font-mono max-w-md mb-10 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+              I spend most of my time building products,
+              writing code, and exploring new ideas.
+
+              When I'm away from the keyboard,
+              you'll probably find me lifting weights
+              or planning the next thing to build.            
+              
+              </p>
             
             <div className="flex flex-wrap gap-6 font-mono text-sm">
               <Link href="#projects" className="group relative interactive">
@@ -131,12 +140,20 @@ export default function Home() {
             className="font-mono"
           >
             <p className="text-base md:text-lg text-text-primary leading-relaxed mb-8 max-w-2xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-            </p>
+                Hi, I'm Udhay.
+
+                I'm passionate about software engineering,
+                product development, and artificial intelligence.
+
+                Most of my time is spent building side projects,
+                experimenting with new ideas, and turning concepts
+                into products. Outside of tech, I enjoy lifting weights,
+                reading, and continuously challenging myself to grow.            
+              </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-text-secondary border-t border-border-dark pt-8">
               <span>Developer</span>
               <span>Builder</span>
-              <span>AI Enthusiast</span>
+              <span>Fitness Enthusiast</span>
               <span>Product Creator</span>
             </div>
           </motion.div>
@@ -156,10 +173,51 @@ export default function Home() {
           </motion.div>
           <div className="flex flex-col gap-8">
             {[
-              { role: "Product Engineer", company: "AI Startup", duration: "2024 - Present", desc: "Building AI-powered tools for developers. Leading the frontend architecture and product design." },
-              { role: "Software Engineer", company: "Tech Corp", duration: "2022 - 2024", desc: "Developed scalable web applications and microservices. Improved performance by 40%." },
-              { role: "Frontend Developer", company: "Agency", duration: "2020 - 2022", desc: "Created award-winning marketing sites and interactive web experiences." }
-            ].map((job, idx) => (
+              {
+                title: "Started with Curiosity",
+                duration: "2014 - 2016",
+                desc: "Discovered programming through Scratch and simple visual projects, which sparked my curiosity for technology. Soon moved into HTML, CSS, and PHP, building my first websites and learning how the web worked behind the scenes.",
+                skills: "Scratch • HTML • CSS • PHP • Web Fundamentals",
+                icon: Baby
+              },
+              {
+                title: "Exploring Systems & Security",
+                duration: "2017 - 2019",
+                desc: "Began diving deeper into the technical side of computing. Explored databases, Linux, networking, and cybersecurity while developing a strong interest in understanding how systems operate under the hood. Spent time learning about ethical hacking, server administration, and security concepts.",
+                skills: "Linux • Databases • Networking • Cybersecurity • System Administration",
+                icon: User
+              },
+              {
+                title: "Building Through Experimentation",
+                duration: "2020 - 2022",
+                desc: "Used the COVID years to learn by building. Created personal projects, experimented with shell scripting, automated Linux workflows, participated in hackathons, and gained hands-on experience turning ideas into working software. This was the period where coding became more than just a hobby.",
+                skills: "Web Development • Shell Scripting • Automation • Hackathons • Open Source",
+                icon: Terminal
+              },
+              {
+                title: "The AI Shift",
+                duration: "2023 - 2024",
+                desc: "Started exploring artificial intelligence and modern developer tooling. Experimented with AI-powered applications, language models, automation workflows, and product design while combining everything learned from web development, systems engineering, and security.",
+                skills: "Artificial Intelligence • LLMs • Developer Tools • Product Design • Automation",
+                icon: Brain
+              },
+              {
+                title: "Academic Focus",
+                duration: "2025",
+                desc: "Dedicated a significant portion of the year to preparing for competitive entrance examinations and academics. While studies were the primary focus, I continued following advancements in AI, experimenting with new technologies, and refining ideas for future projects.",
+                skills: "Problem Solving • Mathematics • Research • Self Learning",
+                icon: GraduationCap
+              },
+              {
+                title: "Shipping Products",
+                duration: "2026 - Present",
+                desc: "Focused on building and launching real-world products. Working on AI-powered developer tools, browser extensions, automation platforms, and multi-agent systems. Currently building projects like Linko and Lore while continuously learning across engineering, product development, AI, design, and entrepreneurship.",
+                skills: "AI Products • Multi-Agent Systems • Startups • Product Engineering • Shipping",
+                icon: Rocket
+              }
+            ].map((exp, idx) => {
+              const Icon = exp.icon;
+              return (
               <motion.div 
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
@@ -168,17 +226,22 @@ export default function Home() {
                 transition={{ delay: idx * 0.1 }}
                 className="group relative block p-6 -mx-6 transition-all hover:bg-card border border-transparent hover:border-border-dark bento-card interactive"
               >
-                <div className="flex flex-col md:flex-row justify-between mb-2">
-                  <h3 className="font-mono text-lg font-bold text-text-primary">
-                    {job.company} <span className="text-text-secondary font-normal">/ {job.role}</span>
+                <div className="flex flex-col md:flex-row justify-between mb-4">
+                  <h3 className="font-mono text-lg font-bold text-text-primary flex items-center gap-3">
+                    <Icon className="w-5 h-5 text-accent-primary" />
+                    {exp.title}
                   </h3>
-                  <span className="font-mono text-sm text-text-secondary mt-1 md:mt-0">{job.duration}</span>
+                  <span className="font-mono text-sm text-text-secondary mt-1 md:mt-0">{exp.duration}</span>
                 </div>
-                <p className="font-mono text-sm text-text-secondary leading-relaxed max-w-xl">
-                  {job.desc}
+                <p className="font-mono text-sm text-text-secondary leading-relaxed max-w-2xl mb-4">
+                  {exp.desc}
                 </p>
+                <div className="font-mono text-xs text-accent-primary">
+                  <span className="text-text-secondary">Skills:</span> {exp.skills}
+                </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -189,18 +252,22 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-mono text-sm uppercase tracking-widest text-text-secondary mb-12"
+            className="flex items-center justify-between mb-12"
         >
-          Projects
+          <div className="font-mono text-sm uppercase tracking-widest text-text-secondary">
+            Projects
+          </div>
+          <Link href="/archive" className="font-mono text-xs text-text-secondary hover:text-accent-primary transition-colors interactive">
+            [ Archive ]
+          </Link>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {[
-            { name: "AI Project Manager", stack: "Next.js / OpenAI / Tailwind", size: "lg:col-span-2 lg:row-span-2", desc: "A smart task manager that automatically categorizes and prioritizes your workflow." },
-            { name: "Developer Productivity Tool", stack: "Rust / React", size: "lg:col-span-1", desc: "CLI and GUI tool for automating local development environments." },
-            { name: "Chrome Extension", stack: "TypeScript", size: "lg:col-span-1", desc: "Browser extension with 10k+ active users for quick code snippets." },
-            { name: "RSS Platform", stack: "Node.js / Vue", size: "lg:col-span-1", desc: "A minimalist, distraction-free RSS reader for developers." },
-            { name: "Automation System", stack: "Python", size: "lg:col-span-1", desc: "Home automation scripts integrated with various APIs." },
+            { name: "Linko", stack: "Extension APIs • JS/TS • Real-time Systems", desc: "Multiplayer networking for LeetCode. A Chrome extension that helps developers connect, collaborate, and learn together while solving coding problems. Built with a focus on real-time interaction and community-driven learning." },
+            { name: "MCP Builder", stack: "AI Agents • MCP • TypeScript • APIs", desc: "Build and deploy Model Context Protocol servers in minutes. A platform that simplifies the creation, testing, and deployment of MCP servers to help developers connect AI models with external tools, APIs, and data sources." },
+            { name: "Scraper.io", stack: "Node.js • Web Scraping • Automation • APIs", desc: "Extract, structure, and automate web data collection. A powerful platform built to help developers and businesses collect structured data from websites at scale. Converts unstructured content into usable data and automates workflows." },
+            { name: "Podex", stack: "AI • Search • Recommendation Engines", desc: "The future of podcast discovery. A platform being built to help listeners discover, understand, and engage with podcasts more effectively by combining AI-powered recommendations with intuitive design. (Status: Building 🚧)" },
           ].map((project, idx) => (
             <motion.div
               key={idx}
@@ -208,7 +275,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
-              className={`bento-card group p-8 flex flex-col justify-between min-h-[250px] lg:min-h-[300px] relative overflow-hidden interactive ${project.size}`}
+              className="bento-card group p-8 flex flex-col justify-between min-h-[250px] lg:min-h-[300px] relative overflow-hidden interactive"
             >
               {/* Subtle hover gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -266,7 +333,7 @@ export default function Home() {
             <div className="lg:col-span-2 border border-border-dark bg-card p-6 md:p-8 hover:border-text-secondary transition-colors interactive overflow-x-auto hide-scrollbar">
                <div className="flex justify-between items-center mb-6">
                  <span className="font-mono text-xs text-text-secondary">Code</span>
-                 <a href="https://github.com/sup-Udh" target="_blank" rel="noreferrer" className="font-mono text-xs text-text-secondary hover:text-white transition-colors interactive">@sup-Udh</a>
+                 <a href="https://github.com/sup-Udh" target="_blank" rel="noreferrer" className="font-mono text-xs text-text-secondary hover:text-accent-primary transition-colors interactive">@sup-Udh</a>
                </div>
                <div className="min-w-[750px]">
                  {mounted && (
@@ -307,7 +374,7 @@ export default function Home() {
           >
             Latest Writing
           </motion.div>
-          <Link href="/blog" className="font-mono text-xs hover:text-white text-text-secondary transition-colors flex items-center gap-2 group interactive">
+          <Link href="/blog" className="font-mono text-xs hover:text-accent-primary text-text-secondary transition-colors flex items-center gap-2 group interactive">
             View All Posts <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -342,14 +409,14 @@ export default function Home() {
             <h2 className="font-mono text-3xl md:text-4xl font-bold mb-4 text-text-primary">Let's build something interesting.</h2>
             <div className="flex items-center gap-4 text-text-secondary mt-6">
               <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 1 }} className="w-2 h-4 bg-text-primary block" />
-              <a href="mailto:contact@placeholder.com" className="font-mono text-sm hover:text-white transition-colors underline underline-offset-4 interactive">contact@placeholder.com</a>
+              <a href="mailto:udhay1co.de@gmail.com" className="font-mono text-sm hover:text-accent-primary transition-colors underline underline-offset-4 interactive">udhay1co.de@gmail.com</a>
             </div>
           </div>
           
           <div className="flex gap-6 font-mono text-sm text-text-secondary">
-            <a href="#" className="hover:text-white transition-colors flex items-center gap-2 interactive">[ GitHub ]</a>
-            <a href="#" className="hover:text-white transition-colors flex items-center gap-2 interactive">[ LinkedIn ]</a>
-            <a href="#" className="hover:text-white transition-colors flex items-center gap-2 interactive">[ Twitter/X ]</a>
+            <a href="#" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ GitHub ]</a>
+            <a href="#" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ LinkedIn ]</a>
+            <a href="#" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ Twitter/X ]</a>
           </div>
         </div>
         
