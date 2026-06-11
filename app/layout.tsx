@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Udhay Rajeev",
     description: "Here's Udhay's personal space. Builder of products, AI systems, and developer tools.",
     images: ["/udhay.png"],
