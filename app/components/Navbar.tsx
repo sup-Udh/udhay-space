@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Sun, Moon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sun, Moon, Menu, X } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
 const navLinks = [
@@ -20,6 +20,7 @@ export default function Navbar() {
   const [activeHash, setActiveHash] = useState("");
   const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -29,32 +30,38 @@ export default function Navbar() {
     // Only run scroll spy on the home page
     if (pathname !== "/") return;
 
+    let ticking = false;
+
     const handleScroll = () => {
-      const sections = navLinks
-        .filter((link) => link.path.startsWith("/#"))
-        .map((link) => link.path.replace("/#", ""));
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const sections = navLinks
+            .filter((link) => link.path.startsWith("/#"))
+            .map((link) => link.path.replace("/#", ""));
 
-      let currentActive = "";
-      
-      // If we're at the very top, active is "Home" (empty hash)
-      if (window.scrollY < 100) {
-        setActiveHash("");
-        return;
-      }
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // If the top of the section is within the top half of the screen
-          // and the bottom of the section is below the top of the screen
-          if (rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
-            currentActive = section;
+          let currentActive = "";
+          
+          if (window.scrollY < 100) {
+            setActiveHash("");
+            ticking = false;
+            return;
           }
-        }
-      }
 
-      setActiveHash(currentActive);
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              if (rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
+                currentActive = section;
+              }
+            }
+          }
+
+          setActiveHash(currentActive);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -120,11 +127,78 @@ export default function Navbar() {
           )}
         </nav>
 
-          {/* Mobile menu could be added here later */}
-        <div className="md:hidden font-mono text-xs">
-          Menu
-        </div>
+          {/* Mobile Menu Toggle */}
+        <button 
+          className="md:hidden text-text-primary p-2 focus:outline-none"
+          onClick={() => setIsMobileMenuOpen(true)}
+          aria-label="Open mobile menu"
+        >
+          <Menu size={24} />
+        </button>
       </div>
+
+      {/* Mobile Drawer Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-background-primary/95 backdrop-blur-md z-[60] md:hidden"
+            >
+              <div className="flex flex-col h-full p-6">
+                <div className="flex justify-end mb-12">
+                  <button 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-text-primary p-2 focus:outline-none hover:text-accent-primary transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+                
+                <nav className="flex flex-col gap-8 items-center text-center">
+                  {navLinks.map((link) => {
+                    const isActive = pathname === link.path || (pathname === "/" && activeHash === link.path.replace("/#", ""));
+                    return (
+                      <Link 
+                        key={link.name} 
+                        href={link.path}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`text-2xl font-mono tracking-widest ${isActive ? "text-accent-primary font-bold" : "text-text-primary hover:text-accent-primary"} transition-colors`}
+                      >
+                        {link.name}
+                      </Link>
+                    );
+                  })}
+                  
+                  {mounted && (
+                    <button
+                      onClick={() => {
+                        toggleTheme();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="mt-8 flex items-center justify-center gap-3 font-mono text-xl text-text-secondary hover:text-text-primary transition-colors border border-border-dark py-4 px-8 w-full max-w-xs"
+                    >
+                      {theme === "colorful" ? (
+                        <>
+                          <Sun size={20} />
+                          <span>Light Mode</span>
+                        </>
+                      ) : (
+                        <>
+                          <Moon size={20} />
+                          <span>Dark Mode</span>
+                        </>
+                      )}
+                    </button>
+                  )}
+                </nav>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Walking Pixel Cat */}
       <motion.div

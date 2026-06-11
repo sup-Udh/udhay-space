@@ -9,10 +9,9 @@ export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
   
   const posts = [
-    { date: "Oct 24, 2025", title: "Building an AI-powered code reviewer", readTime: "5 min read", desc: "How I integrated LLMs into my CI/CD pipeline using GitHub Actions and Node.js.", category: "AI" },
-    { date: "Sep 12, 2025", title: "Minimalism in Web Design", readTime: "8 min read", desc: "Why less is more when building developer tools and how to apply minimalist principles.", category: "Design" },
-    { date: "Aug 05, 2025", title: "My terminal setup for 2026", readTime: "4 min read", desc: "A deep dive into my dotfiles, tmux configuration, and workflow automation.", category: "Workflow" },
-    { date: "Jul 18, 2025", title: "State Management in Next.js App Router", readTime: "6 min read", desc: "Navigating the complexities of React Server Components and client-side state.", category: "Engineering" },
+    { date: "May 15, 2026", title: "From Scratch to AI Agents: My 12-Year Journey in Tech", readTime: "3 min read", desc: "A look back at how dragging colorful blocks slowly turned into an obsession with understanding how software worked, and how those detours shaped my thinking today.", category: "Journey", link: "/blog/journey" },
+    { date: "May 02, 2026", title: "Why I Keep Building Products That Never Launch", readTime: "4 min read", desc: "Sometimes the hardest challenge isn't building something—it's finding people who actually need it. Exploring why incomplete projects are essential for growth.", category: "Product", link: "/blog/never-launch" },
+    { date: "Apr 18, 2026", title: "The Future of Software Is Agents, Not Apps", readTime: "3 min read", desc: "We are moving away from manual applications to goal-oriented agents that coordinate work on our behalf. Here is why the future is about software working alongside us.", category: "AI", link: "/blog/agents-not-apps" }
   ];
 
   return (
@@ -67,8 +66,8 @@ export default function Blog() {
         {/* Posts List */}
         <div className="flex flex-col gap-8">
           {posts.map((post, idx) => (
-            <motion.article 
-              key={idx}
+            <Link href={post.link} key={idx} className="block w-full cursor-pointer">
+              <motion.article 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + (idx * 0.1) }}
@@ -81,11 +80,12 @@ export default function Blog() {
               <div>
                 <h2 className="text-2xl font-bold font-mono text-text-primary mb-3 group-hover:underline underline-offset-4 decoration-text-secondary">{post.title}</h2>
                 <p className="text-text-secondary font-mono mb-6 leading-relaxed">{post.desc}</p>
-                <Link href="#" className="inline-flex items-center gap-2 font-mono text-sm text-text-primary group-hover:gap-4 transition-all">
+                <span className="inline-flex items-center gap-2 font-mono text-sm text-text-primary group-hover:gap-4 transition-all">
                   Read Article <ArrowRight className="w-4 h-4" />
-                </Link>
+                </span>
               </div>
             </motion.article>
+          </Link>
           ))}
         </div>
 

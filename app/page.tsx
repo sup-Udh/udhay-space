@@ -391,11 +391,11 @@ export default function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { date: "Oct 24, 2025", title: "Building an AI-powered code reviewer", excerpt: "How I integrated LLMs into my CI/CD pipeline." },
-            { date: "Sep 12, 2025", title: "Minimalism in Web Design", excerpt: "Why less is more when building developer tools." },
-            { date: "Aug 05, 2025", title: "My terminal setup for 2026", excerpt: "A deep dive into my dotfiles and workflow." },
+            { date: "May 15, 2026", title: "From Scratch to AI Agents: My 12-Year Journey in Tech", excerpt: "How dragging colorful blocks turned into an obsession with software.", link: "/blog/journey" },
+            { date: "May 02, 2026", title: "Why I Keep Building Products That Never Launch", excerpt: "Exploring why incomplete projects are essential for growth.", link: "/blog/never-launch" },
+            { date: "Apr 18, 2026", title: "The Future of Software Is Agents, Not Apps", excerpt: "Why the future is about software working alongside us.", link: "/blog/agents-not-apps" },
           ].map((post, idx) => (
-            <Link href="/blog" key={idx} className="block group interactive">
+            <Link href={post.link} key={idx} className="block group interactive">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
