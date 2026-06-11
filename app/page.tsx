@@ -363,7 +363,6 @@ export default function Home() {
                         light: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
                         dark: ['#0A0A0A', '#2A2A2A', '#52525B', '#A1A1AA', '#F5F5F5'],
                       }}
-                      hideColorLegend={true}
                       labels={{
                         totalCount: '{{count}} contributions in 2026',
                       }}
