@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/1781103351017.png",
+        url: "/udhay.png",
         width: 800,
         height: 600,
         alt: "Udhay's Portfolio",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Udhay Rajeev",
     description: "Here's Udhay's personal space. Builder of products, AI systems, and developer tools.",
-    images: ["/1781103351017.png"],
+    images: ["/udhay.png"],
   },
 };
 
