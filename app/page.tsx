@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Baby, User, Terminal, Brain, GraduationCap, Rocket, Network, Bot, Blocks, Database, Headphones } from "lucide-react";
+import { ArrowRight, Baby, User, Terminal, Brain, GraduationCap, Rocket, Network, Bot, Blocks, Database, Headphones, Trophy } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { GitHubCalendar } from "react-github-calendar";
@@ -270,36 +270,44 @@ export default function Home() {
             { name: "Scraper.io", stack: "Node.js • Web Scraping • Automation • APIs", desc: "Extract, structure, and automate web data collection. A powerful platform built to help developers and businesses collect structured data from websites at scale. Converts unstructured content into usable data and automates workflows.", icon: Database },
             { name: "Podex", stack: "AI • Search • Recommendation Engines", desc: "The future of podcast discovery. A platform being built to help listeners discover, understand, and engage with podcasts more effectively by combining AI-powered recommendations with intuitive design. (Status: Building 🚧)", icon: Headphones },
             { name: "Lore", stack: "Rust • CLI • LLMs", desc: "Run small LLM models directly from your terminal. Built with Rust for maximum performance and a tiny footprint. (Beginner Project)", icon: Terminal },
+            { name: "sqrt", stack: "Web • Education", desc: "An educational math learning resource for all ages. Hackathon Winner at Midnight Hacks 2019.", link: "https://devpost.com/software/sqrt", icon: Trophy },
           ].map((project, idx) => {
             const ProjectIcon = project.icon;
-            return (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="bento-card group p-8 flex flex-col justify-between min-h-[250px] lg:min-h-[300px] relative overflow-hidden interactive"
-            >
-              {/* Subtle hover gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 flex items-center justify-center bg-background-secondary border border-border-dark shadow-sm">
-                    <ProjectIcon className="w-6 h-6 text-text-primary" />
+            
+            const card = (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+                className="bento-card group p-8 flex flex-col justify-between min-h-[250px] lg:min-h-[300px] relative overflow-hidden interactive"
+              >
+                {/* Subtle hover gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 flex items-center justify-center bg-background-secondary border border-border-dark shadow-sm">
+                      <ProjectIcon className="w-6 h-6 text-text-primary" />
+                    </div>
+                    <h3 className="font-mono text-xl font-bold text-text-primary">{project.name}</h3>
                   </div>
-                  <h3 className="font-mono text-xl font-bold text-text-primary">{project.name}</h3>
+                  <p className="font-mono text-sm text-text-secondary">{project.desc}</p>
                 </div>
-                <p className="font-mono text-sm text-text-secondary">{project.desc}</p>
-              </div>
-              
-              <div className="mt-8 flex items-center justify-between relative z-10">
-                <span className="font-code text-xs text-text-secondary group-hover:text-text-primary transition-colors">{project.stack}</span>
-                <ArrowRight className="w-4 h-4 text-text-secondary group-hover:text-text-primary group-hover:translate-x-1 transition-all" />
-              </div>
-            </motion.div>
+                
+                <div className="mt-8 flex items-center justify-between relative z-10">
+                  <span className="font-code text-xs text-text-secondary group-hover:text-text-primary transition-colors">{project.stack}</span>
+                  <ArrowRight className="w-4 h-4 text-text-secondary group-hover:text-text-primary group-hover:translate-x-1 transition-all" />
+                </div>
+              </motion.div>
             );
+
+            return project.link ? (
+              <a href={project.link} target="_blank" rel="noreferrer" key={idx} className="block">
+                {card}
+              </a>
+            ) : card;
           })}
         </div>
       </section>

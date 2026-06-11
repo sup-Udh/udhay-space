@@ -2,11 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Search, ArrowRight, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function Blog() {
-  const [searchQuery, setSearchQuery] = useState("");
   
   const posts = [
     { date: "May 15, 2026", title: "From Scratch to AI Agents: My 12-Year Journey in Tech", readTime: "3 min read", desc: "A look back at how dragging colorful blocks slowly turned into an obsession with understanding how software worked, and how those detours shaped my thinking today.", category: "Journey", link: "/blog/journey" },
@@ -36,32 +34,7 @@ export default function Blog() {
           </p>
         </motion.div>
 
-        {/* Filters and Search */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="flex flex-col md:flex-row gap-6 justify-between items-center mb-16 border-b border-border-dark pb-8"
-        >
-          <div className="relative w-full md:w-96 interactive">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
-            <input 
-              type="text" 
-              placeholder="Search posts..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-background-secondary border border-border-dark text-text-primary font-mono text-sm pl-10 pr-4 py-3 outline-none focus:border-text-secondary transition-colors"
-            />
-          </div>
-          
-          <div className="flex gap-4 font-mono text-sm overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar">
-            {["All", "Engineering", "Design", "AI", "Workflow"].map((cat) => (
-              <button key={cat} className={`whitespace-nowrap px-4 py-2 border ${cat === "All" ? "border-text-primary text-text-primary" : "border-border-dark text-text-secondary hover:border-text-secondary"} transition-colors interactive`}>
-                {cat}
-              </button>
-            ))}
-          </div>
-        </motion.div>
+        {/* Filters and Search removed per user request */}
 
         {/* Posts List */}
         <div className="flex flex-col gap-8">
@@ -89,13 +62,7 @@ export default function Blog() {
           ))}
         </div>
 
-        {/* Pagination Placeholder */}
-        <div className="mt-16 flex justify-center gap-4 font-mono text-sm">
-          <button className="px-4 py-2 border border-border-dark text-text-secondary opacity-50 cursor-not-allowed">Previous</button>
-          <button className="px-4 py-2 border border-border-dark text-text-primary bg-background-secondary">1</button>
-          <button className="px-4 py-2 border border-border-dark text-text-secondary hover:text-text-primary hover:border-text-secondary transition-colors interactive">2</button>
-          <button className="px-4 py-2 border border-border-dark text-text-secondary hover:text-text-primary hover:border-text-secondary transition-colors interactive">Next</button>
-        </div>
+        {/* Pagination removed per user request */}
 
       </div>
     </div>
