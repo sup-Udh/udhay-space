@@ -25,11 +25,20 @@ export const metadata: Metadata = {
     description: "Here's Udhay's personal space. Builder of products, AI systems, and developer tools.",
     siteName: "Udhay's Portfolio",
     type: "website",
+    images: [
+      {
+        url: "/1781103351017.png",
+        width: 800,
+        height: 600,
+        alt: "Udhay's Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Udhay Rajeev",
     description: "Here's Udhay's personal space. Builder of products, AI systems, and developer tools.",
+    images: ["/1781103351017.png"],
   },
 };
 
