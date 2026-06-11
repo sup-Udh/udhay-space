@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Baby, User, Terminal, Brain, GraduationCap, Rocket } from "lucide-react";
+import { ArrowRight, Baby, User, Terminal, Brain, GraduationCap, Rocket, Network, Bot, Blocks, Database, Headphones } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { GitHubCalendar } from "react-github-calendar";
@@ -264,11 +264,15 @@ export default function Home() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {[
-            { name: "Linko", stack: "Extension APIs • JS/TS • Real-time Systems", desc: "Multiplayer networking for LeetCode. A Chrome extension that helps developers connect, collaborate, and learn together while solving coding problems. Built with a focus on real-time interaction and community-driven learning." },
-            { name: "MCP Builder", stack: "AI Agents • MCP • TypeScript • APIs", desc: "Build and deploy Model Context Protocol servers in minutes. A platform that simplifies the creation, testing, and deployment of MCP servers to help developers connect AI models with external tools, APIs, and data sources." },
-            { name: "Scraper.io", stack: "Node.js • Web Scraping • Automation • APIs", desc: "Extract, structure, and automate web data collection. A powerful platform built to help developers and businesses collect structured data from websites at scale. Converts unstructured content into usable data and automates workflows." },
-            { name: "Podex", stack: "AI • Search • Recommendation Engines", desc: "The future of podcast discovery. A platform being built to help listeners discover, understand, and engage with podcasts more effectively by combining AI-powered recommendations with intuitive design. (Status: Building 🚧)" },
-          ].map((project, idx) => (
+            { name: "Linko", stack: "Extension APIs • JS/TS • Real-time Systems", desc: "Multiplayer networking for LeetCode. A Chrome extension that helps developers connect, collaborate, and learn together while solving coding problems. Built with a focus on real-time interaction and community-driven learning.", icon: Network },
+            { name: "Minecraft-AI Agent", stack: "AI Agents • Minecraft API • LLMs", desc: "A platform that provides an AI companion to play alongside you in Minecraft and help you survive in the game. (Status: Building 🚧)", icon: Bot },
+            { name: "MCP Builder", stack: "AI Agents • MCP • TypeScript • APIs", desc: "Build and deploy Model Context Protocol servers in minutes. A platform that simplifies the creation, testing, and deployment of MCP servers to help developers connect AI models with external tools, APIs, and data sources.", icon: Blocks },
+            { name: "Scraper.io", stack: "Node.js • Web Scraping • Automation • APIs", desc: "Extract, structure, and automate web data collection. A powerful platform built to help developers and businesses collect structured data from websites at scale. Converts unstructured content into usable data and automates workflows.", icon: Database },
+            { name: "Podex", stack: "AI • Search • Recommendation Engines", desc: "The future of podcast discovery. A platform being built to help listeners discover, understand, and engage with podcasts more effectively by combining AI-powered recommendations with intuitive design. (Status: Building 🚧)", icon: Headphones },
+            { name: "Lore", stack: "Rust • CLI • LLMs", desc: "Run small LLM models directly from your terminal. Built with Rust for maximum performance and a tiny footprint. (Beginner Project)", icon: Terminal },
+          ].map((project, idx) => {
+            const ProjectIcon = project.icon;
+            return (
             <motion.div
               key={idx}
               initial={{ opacity: 0, scale: 0.98 }}
@@ -281,7 +285,12 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               
               <div className="relative z-10">
-                <h3 className="font-mono text-xl font-bold text-text-primary mb-3">{project.name}</h3>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 flex items-center justify-center bg-background-secondary border border-border-dark shadow-sm">
+                    <ProjectIcon className="w-6 h-6 text-text-primary" />
+                  </div>
+                  <h3 className="font-mono text-xl font-bold text-text-primary">{project.name}</h3>
+                </div>
                 <p className="font-mono text-sm text-text-secondary">{project.desc}</p>
               </div>
               
@@ -290,7 +299,8 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4 text-text-secondary group-hover:text-text-primary group-hover:translate-x-1 transition-all" />
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -306,7 +316,7 @@ export default function Home() {
         </motion.div>
         
         <div className="flex flex-wrap gap-4 font-code text-sm">
-          {["React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "AI", "Python", "Docker", "Tailwind CSS", "Framer Motion", "PostgreSQL"].map((skill, idx) => (
+          {["React", "Next.js", "TypeScript & JavaScript", "Node.js", "Express", "MongoDB", "Docker", "Python", "Docker", "Tailwind CSS",  "PostgreSQL", "Rust", "shell scripting", "Mongo DB"].map((skill, idx) => (
             <motion.div
               key={idx}
               whileHover={{ scale: 1.05 }}

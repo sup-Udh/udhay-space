@@ -19,6 +19,13 @@ export default function ArchivePage() {
       desc: "An experimental platform for sharing workspace setups and productivity workflows. Although the project never made it to a full release, it helped me explore community-driven product design and content discovery. One of my early attempts at building a community platform. While it wasn't shipped publicly, the experience played a key role in shaping how I approach product development today.",
       roles: "Solo Developer",
       tech: "Community Building • UI/UX Design • Next.js",
+    },
+    {
+      name: "Mini Metro Web",
+      tagline: "A web-based clone of the transit simulation game",
+      desc: "Tried to reimplement the beautiful transit simulation game Mini Metro entirely on the web. Dealt with complex HTML5 Canvas rendering, dynamic Bezier curves, and game loops. Unfortunately, it turned out to be much harder than expected—yet another failed ambitious project that I eventually abandoned. Still, it was a massive learning experience for browser-based game development.",
+      roles: "Solo Developer",
+      tech: "HTML5 Canvas • Game Dev • JavaScript",
     }
   ];
 
