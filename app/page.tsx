@@ -432,9 +432,9 @@ export default function Home() {
           </div>
           
           <div className="flex gap-6 font-mono text-sm text-text-secondary">
-            <a href="#" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ GitHub ]</a>
-            <a href="#" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ LinkedIn ]</a>
-            <a href="#" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ Twitter/X ]</a>
+            <a href="https://github.com/sup-Udh" target="_blank" rel="noreferrer" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ GitHub ]</a>
+            <a href="https://www.linkedin.com/in/udhay-rajeev-42b193206/" target="_blank" rel="noreferrer" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ LinkedIn ]</a>
+            <a href="https://x.com/Udhay26903569" target="_blank" rel="noreferrer" className="hover:text-accent-primary transition-colors flex items-center gap-2 interactive">[ Twitter/X ]</a>
           </div>
         </div>
         
