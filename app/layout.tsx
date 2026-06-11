@@ -18,8 +18,19 @@ const jetbrainsMono = JetBrains_Mono({
 import { ThemeProvider } from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Udhay | Developer & Designer",
-  description: "Personal portfolio of Udhay. Builder of products, AI systems, and developer tools.",
+  title: "Udhay Rajeev",
+  description: "Here's Udhay's personal space. Builder of products, AI systems, and developer tools.",
+  openGraph: {
+    title: "Udhay Rajeev",
+    description: "Here's Udhay's personal space. Builder of products, AI systems, and developer tools.",
+    siteName: "Udhay's Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Udhay Rajeev",
+    description: "Here's Udhay's personal space. Builder of products, AI systems, and developer tools.",
+  },
 };
 
 export default function RootLayout({
