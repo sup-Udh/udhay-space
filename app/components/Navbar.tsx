@@ -72,7 +72,7 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background-primary/80 backdrop-blur-md border-b border-border-dark transition-colors duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background-primary md:bg-background-primary/90 backdrop-blur-md border-b border-border-dark transition-colors duration-300 shadow-sm md:shadow-none">
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <div className="font-mono text-sm font-bold tracking-wider">
           <Link href="/" className="hover:text-accent-primary transition-colors">
@@ -145,7 +145,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-background-primary/95 backdrop-blur-md z-[60] md:hidden"
+              className="fixed inset-0 bg-background-primary backdrop-blur-none z-[60] md:hidden"
             >
               <div className="flex flex-col h-full p-6">
                 <div className="flex justify-end mb-12">

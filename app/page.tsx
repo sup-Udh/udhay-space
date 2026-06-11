@@ -224,7 +224,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group relative block p-6 -mx-6 transition-all hover:bg-card border border-transparent hover:border-border-dark bento-card interactive"
+                className="group relative block p-4 md:p-6 md:-mx-6 transition-all hover:bg-card border border-transparent hover:border-border-dark bento-card interactive"
               >
                 <div className="flex flex-col md:flex-row justify-between mb-4">
                   <h3 className="font-mono text-lg font-bold text-text-primary flex items-center gap-3">
